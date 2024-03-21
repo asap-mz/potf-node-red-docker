@@ -17,6 +17,8 @@ RUN set -ex && \
         nano \
         wget \
         git \
+        libaio1 \
+        unzip \
         openssl \
         openssh-client \
         ca-certificates && \
@@ -28,7 +30,18 @@ RUN set -ex && \
     chown -R node-red:root /usr/src/node-red && chmod -R g+rwX /usr/src/node-red
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
-
+RUN cd /tmp
+RUN curl -o instantclient-basiclite.zip https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip -SL&& \
+    unzip instantclient-basiclite.zip && \
+    mv instantclient*/ /usr/lib/instantclient && \
+    rm instantclient-basiclite.zip && \
+    ln -s /usr/lib/instantclient/libclntsh.so.21.1 /usr/lib/libclntsh.so && \
+    ln -s /usr/lib/instantclient/libocci.so.21.1 /usr/lib/libocci.so && \
+    ln -s /usr/lib/instantclient/libociicus.so /usr/lib/libociicus.so && \
+    ln -s /usr/lib/instantclient/libnnz21.so /usr/lib/libnnz21.so && \
+    ln -s /usr/lib/libnsl.so.2 /usr/lib/libnsl.so.1 && \
+    ln -s /lib/libc.so.6 /usr/lib/libresolv.so.2 && \
+    ln -s /lib64/ld-linux-x86-64.so.2 /usr/lib/ld-linux-x86-64.so.2	
 # Set work directory
 WORKDIR /usr/src/node-red
 
@@ -40,6 +53,7 @@ RUN echo "PubkeyAcceptedKeyTypes +ssh-rsa" >> /etc/ssh/ssh_config
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json .
 COPY flows.json /data
+COPY tnsnames.ora /data
 COPY scripts/entrypoint.sh .
 
 #### Stage BUILD #######################################################################################################
@@ -88,7 +102,10 @@ USER node-red
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
     PATH=/usr/src/node-red/node_modules/.bin:${PATH} \
-    FLOWS=flows.json
+    FLOWS=flows.json \
+    LD_LIBRARY_PATH=/usr/lib/instantclient \
+    TNS_ADMIN=/data
+
 
 # ENV NODE_RED_ENABLE_SAFE_MODE=true    # Uncomment to enable safe start mode (flows not running)
 # ENV NODE_RED_ENABLE_PROJECTS=true     # Uncomment to enable projects option

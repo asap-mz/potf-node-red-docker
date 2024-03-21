@@ -7,6 +7,150 @@
         "info": ""
     },
     {
+        "id": "9cbb67f4d57206a3",
+        "type": "tab",
+        "label": "Check IP",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "06ecd4fa60842e23",
+        "type": "tab",
+        "label": "History load",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d49126dd4c1d3065",
+        "type": "tab",
+        "label": "test endpoint",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f5a328b5fd089801",
+        "type": "tab",
+        "label": "Infinity realtime",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b271e17494363ebb",
+        "type": "tab",
+        "label": "analog counter event",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d04963dd178ec09f",
+        "type": "tab",
+        "label": "history load2 ",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4db8638ec83b30a6",
+        "type": "tab",
+        "label": "SAP MII",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "00d9dfe494a31876",
+        "type": "subflow",
+        "name": "testsub",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "c571e928fbb9baa9",
+        "type": "tls-config",
+        "name": "Braincube_no_verification",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "c03f2856361c3fb6",
+        "type": "global-config",
+        "name": "global-config",
+        "env": [
+            {
+                "name": "initialdelay",
+                "value": "10000",
+                "type": "num"
+            },
+            {
+                "name": "initialtimeout",
+                "value": "10000",
+                "type": "str"
+            }
+        ]
+    },
+    {
+        "id": "dabc600bfac46293",
+        "type": "MSSQL-CN",
+        "name": "test",
+        "server": "potf-sqlmi-processing-dev.b79bd3c3c5aa.database.windows.net",
+        "port": "",
+        "encyption": true,
+        "trustServerCertificate": false,
+        "database": "potf-sa-sqldb-processing",
+        "useUTC": false,
+        "connectTimeout": "",
+        "requestTimeout": "",
+        "cancelTimeout": "",
+        "pool": "",
+        "parseJSON": false,
+        "enableArithAbort": true,
+        "readOnlyIntent": false
+    },
+    {
+        "id": "b92f27f6a441682e",
+        "type": "MSSQL-CN",
+        "name": "infinity_conn",
+        "server": "potf-sqlmi-processing-dev.b79bd3c3c5aa.database.windows.net",
+        "port": "",
+        "encyption": true,
+        "trustServerCertificate": false,
+        "database": "potf-sa-sqldb-processing",
+        "useUTC": false,
+        "connectTimeout": "",
+        "requestTimeout": "",
+        "cancelTimeout": "",
+        "pool": "",
+        "parseJSON": false,
+        "enableArithAbort": true,
+        "readOnlyIntent": false
+    },
+    {
+        "id": "bf2110fc04505120",
+        "type": "link out",
+        "z": "00d9dfe494a31876",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [],
+        "x": 375,
+        "y": 120,
+        "wires": []
+    },
+    {
         "id": "3cc11d24.ff01a2",
         "type": "comment",
         "z": "f6f2187d.f17ca8",
@@ -15,5 +159,3012 @@
         "x": 350,
         "y": 80,
         "wires": []
+    },
+    {
+        "id": "138d183e987ffd7d",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "e0479d861dd5123d"
+            ]
+        ]
+    },
+    {
+        "id": "e0479d861dd5123d",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4e1a48d23b83e419",
+        "type": "comment",
+        "z": "9cbb67f4d57206a3",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "927b6f08efd84db4",
+        "type": "inject",
+        "z": "9cbb67f4d57206a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "appName",
+                "v": "'blabla'",
+                "vt": "str"
+            },
+            {
+                "p": "requestTimeout",
+                "v": "10000",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "845e309952709fbc"
+            ]
+        ]
+    },
+    {
+        "id": "55a2893f78ecfd00",
+        "type": "debug",
+        "z": "9cbb67f4d57206a3",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "845e309952709fbc",
+        "type": "MSSQL",
+        "z": "9cbb67f4d57206a3",
+        "mssqlCN": "dabc600bfac46293",
+        "name": "check_ip",
+        "outField": "payload",
+        "query": "SELECT client_net_address, local_net_address \nFROM sys.dm_exec_connections \nWHERE session_id = @@SPID",
+        "x": 460,
+        "y": 460,
+        "wires": [
+            [
+                "55a2893f78ecfd00"
+            ]
+        ]
+    },
+    {
+        "id": "9747928e3d21d758",
+        "type": "exec",
+        "z": "9cbb67f4d57206a3",
+        "command": "ls",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 290,
+        "y": 240,
+        "wires": [
+            [
+                "dcdde46427afb5a2"
+            ],
+            [],
+            [
+                "ebca1bed4479121b"
+            ]
+        ]
+    },
+    {
+        "id": "dcdde46427afb5a2",
+        "type": "debug",
+        "z": "9cbb67f4d57206a3",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "ebca1bed4479121b",
+        "type": "debug",
+        "z": "9cbb67f4d57206a3",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "b6b1240068b9c759",
+        "type": "inject",
+        "z": "9cbb67f4d57206a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 240,
+        "wires": [
+            [
+                "9747928e3d21d758"
+            ]
+        ]
+    },
+    {
+        "id": "a89fe4d0f88c9552",
+        "type": "exec",
+        "z": "9cbb67f4d57206a3",
+        "command": "npm install oracledb",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "bf8ab13de3c96896"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "721f9eae286fecac",
+        "type": "inject",
+        "z": "9cbb67f4d57206a3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 600,
+        "wires": [
+            [
+                "a89fe4d0f88c9552"
+            ]
+        ]
+    },
+    {
+        "id": "bf8ab13de3c96896",
+        "type": "debug",
+        "z": "9cbb67f4d57206a3",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "991e352cd5ca42e0",
+        "type": "inject",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "5e40f44965f06f70"
+            ]
+        ]
+    },
+    {
+        "id": "cc0bebf835bc82b2",
+        "type": "change",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].body",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "query",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 100,
+        "wires": [
+            [
+                "fd167ff1f2ab3718"
+            ]
+        ]
+    },
+    {
+        "id": "fd167ff1f2ab3718",
+        "type": "json",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 930,
+        "y": 200,
+        "wires": [
+            [
+                "35037f29e3459b6e"
+            ]
+        ]
+    },
+    {
+        "id": "6cabde4820f5fba3",
+        "type": "http request",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr2/edge/quality",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "edd0458f9bad856a"
+            ]
+        ]
+    },
+    {
+        "id": "35037f29e3459b6e",
+        "type": "function",
+        "z": "06ecd4fa60842e23",
+        "name": "Initalize flow ",
+        "func": "flow.set(\"payload\", msg.payload)\nflow.set(\"delay\", env.get(\"initialdelay\")) //delay betwien retries start at 2 seconds\nflow.set(\"timeout\", env.get(\"initialtimeout\"))\n//flow.set(\"retry\", 0)\nflow.set(\"iteration\", 1);\nvar newmsg = {payload: \"[\"+msg.payload+\"]\"}\nnewmsg.requestTimeout = 60000; //timeout of 60 seconds (in miliseconds)\n//newmsg.retry = flow.get(\"retry\"); \nnewmsg.iteration = flow.get(\"iteration\");//set initial vale on iteration\nnewmsg.msg_id = flow.get(\"msg_id\");\n//newmsg.delay = flow.get(\"delay\")\n//flow.set(\"delay\", 100)\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 200,
+        "wires": [
+            [
+                "6cabde4820f5fba3"
+            ]
+        ],
+        "info": "env.get(\"initialdelay\") set in the nodered settings\r\n"
+    },
+    {
+        "id": "edd0458f9bad856a",
+        "type": "switch",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "b815098cf4c46d36",
+                "6945649739e3dd82"
+            ],
+            [
+                "c3d0089fa27118ae"
+            ]
+        ]
+    },
+    {
+        "id": "b815098cf4c46d36",
+        "type": "debug",
+        "z": "06ecd4fa60842e23",
+        "name": "Success",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f99132bce80794bc",
+        "type": "function",
+        "z": "06ecd4fa60842e23",
+        "name": "Retry",
+        "func": "//flow.iteration = 1 + 1\n//flow.set(\"retry\", flow.get(\"retry\") + 1)\nflow.set(\"iteration\", flow.get(\"iteration\") + 1)\nflow.set(\"delay\", flow.get(\"delay\")*2);\nflow.set(\"timeout\", flow.get(\"timeout\") * 2);\nvar newmsg = { payload: flow.get(\"payload\"), \nrequestTimeout: flow.get(\"timeout\"), \n//retry: flow.get(\"retry\"),\niteration: flow.get(\"iteration\"),\ndelay: flow.get(\"delay\") }\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 520,
+        "wires": [
+            [
+                "63ef96406db3c046"
+            ]
+        ]
+    },
+    {
+        "id": "c3d0089fa27118ae",
+        "type": "switch",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "property": "iteration",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "gte",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 580,
+        "wires": [
+            [
+                "f99132bce80794bc"
+            ],
+            [
+                "bb91420d82134219",
+                "6945649739e3dd82"
+            ]
+        ]
+    },
+    {
+        "id": "bb91420d82134219",
+        "type": "debug",
+        "z": "06ecd4fa60842e23",
+        "name": "Failure process",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "63ef96406db3c046",
+        "type": "delay",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 220,
+        "y": 460,
+        "wires": [
+            [
+                "6cabde4820f5fba3"
+            ]
+        ]
+    },
+    {
+        "id": "c2f7007d72f76f47",
+        "type": "switch",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "a389171fd2037ca5"
+            ],
+            [
+                "cc0bebf835bc82b2"
+            ]
+        ]
+    },
+    {
+        "id": "a389171fd2037ca5",
+        "type": "debug",
+        "z": "06ecd4fa60842e23",
+        "name": "ISNULL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5e40f44965f06f70",
+        "type": "change",
+        "z": "06ecd4fa60842e23",
+        "name": "initialize history load",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "8e25c8f18b88f0de"
+            ]
+        ]
+    },
+    {
+        "id": "6945649739e3dd82",
+        "type": "change",
+        "z": "06ecd4fa60842e23",
+        "name": "increment id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "msg_id",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "msg_id+1",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "msg_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "0db0e61b11afe897"
+            ]
+        ]
+    },
+    {
+        "id": "0db0e61b11afe897",
+        "type": "switch",
+        "z": "06ecd4fa60842e23",
+        "name": "",
+        "property": "msg_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "650",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "8e25c8f18b88f0de"
+            ]
+        ]
+    },
+    {
+        "id": "8e25c8f18b88f0de",
+        "type": "MSSQL",
+        "z": "06ecd4fa60842e23",
+        "mssqlCN": "dabc600bfac46293",
+        "name": "select_test",
+        "outField": "payload",
+        "query": "select  body, id from [potf-sa-sqldb-processing].[output].[infinity_braincube]\nwhere id = {{{msg_id}}}\n",
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "c2f7007d72f76f47"
+            ]
+        ]
+    },
+    {
+        "id": "db811d89d8fb27fc",
+        "type": "http in",
+        "z": "d49126dd4c1d3065",
+        "name": "test",
+        "url": "/test",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "d52178f06311799e",
+                "2d465f9ef2ee1651"
+            ]
+        ]
+    },
+    {
+        "id": "dca949ad9b83ada4",
+        "type": "http response",
+        "z": "d49126dd4c1d3065",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1180,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3d5565a7322da767",
+        "type": "function",
+        "z": "d49126dd4c1d3065",
+        "name": "function 1",
+        "func": "var newmsg = {res: msg.res ,payload: msg.payload\n//, retry:msg.res.headers.retry //providing retry in header ends with failure\n};\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 120,
+        "wires": [
+            [
+                "dca949ad9b83ada4"
+            ]
+        ]
+    },
+    {
+        "id": "d52178f06311799e",
+        "type": "debug",
+        "z": "d49126dd4c1d3065",
+        "name": "received",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2d465f9ef2ee1651",
+        "type": "delay",
+        "z": "d49126dd4c1d3065",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 510,
+        "y": 120,
+        "wires": [
+            [
+                "3d5565a7322da767",
+                "ce60f04bc609e19c"
+            ]
+        ]
+    },
+    {
+        "id": "ce60f04bc609e19c",
+        "type": "debug",
+        "z": "d49126dd4c1d3065",
+        "name": "replied",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cb8b42ab5cc34ff1",
+        "type": "http in",
+        "z": "d49126dd4c1d3065",
+        "name": "",
+        "url": "/quality",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "923153976869b682",
+                "f38bcf152171cdf4"
+            ]
+        ]
+    },
+    {
+        "id": "923153976869b682",
+        "type": "http response",
+        "z": "d49126dd4c1d3065",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 300,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "759e122a143bf746",
+        "type": "function",
+        "z": "d49126dd4c1d3065",
+        "name": "Counter",
+        "func": "function addZero(i) {\n  if (i < 10) {\n    i = \"0\" + i;\n  }\n  return i;\n}\n\nfunction getDate(date) {\n    var d = date.getDate();\n    var m = date.getMonth() + 1; //Month from 0 to 11\n    var y = date.getFullYear();\n    var h = date.getHours();\n    var M = date.getMinutes();\n    var s = date.getSeconds();\n    return '' + y + addZero(m) + addZero(d) + \"_\" + addZero(h) + addZero(M) + addZero(s);\n}\n\n\nlet count = flow.get(\"CounterQuality\") || [];\n\nif (msg.payload)\ncount++\nflow.set(\"CounterQuality\", count);\n\nnode.status({\n    fill: \"green\",\n    shape: \"dot\",\n    text: \"Size: \" + count + \", Last : \" + getDate(new Date())\n})\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 555,
+        "y": 400,
+        "wires": [
+            [
+                "bc231ab2698b522c",
+                "930f25c35651779b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f38bcf152171cdf4",
+        "type": "function",
+        "z": "d49126dd4c1d3065",
+        "name": "",
+        "func": "flow.set(\"CounterQuality\", 0);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 435,
+        "y": 400,
+        "wires": [
+            [
+                "759e122a143bf746",
+                "fd9ab019b8861101"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "bc231ab2698b522c",
+        "type": "function",
+        "z": "d49126dd4c1d3065",
+        "name": "Unpack",
+        "func": "const payload = msg.payload\nlet payload2 = {}\nlet process\nlet measure\n\n//Nico test si property measures\nfacility = payload.facility\ntestDate = payload.testDate;\npartName = payload.partName;\npartGroup = payload.partGroup;\nprocessGroup = payload.processGroup;\ntestType = payload.testType;\n\n\npayload.measures.forEach((measure, indice) => {\n      payload2 = {\n          'ID' : testDate + \"_\" + measure.process + \"_\" + measure.testMeasure + \"_\" + measure.testNo + \"_\" + measure.subTestNo,\n          'facility' : facility,\n          'testDate' : testDate,\n          'partName' : partName,\n          'partGroup' : partGroup,\n          'processGroup' : processGroup,\n          'testType' : testType,\n          'process' : measure.process,\n          'testNo' : measure.testNo,\n          'subTestNo' : measure.subTestNo,\n          'disabled' : measure.disabled,\n          'result' : measure.result,\n          'testMeasure' : measure.testMeasure,\n          'testGroup' : measure.testGroup,\n          'upperLimit' : measure.upperLimit,\n          'target' : measure.target,\n          'lowerLimit' : measure.lowerLimit,\n          'upperReasonableLimit' : measure.upperReasonableLimit,\n          'lowerReasonableLimit' : measure.lowerReasonableLimit\n      }  \n      msg.payload = payload2;\n      node.send(msg)\n})",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 760,
+        "y": 400,
+        "wires": [
+            [
+                "0a7df5c917da6fa3"
+            ]
+        ]
+    },
+    {
+        "id": "0a7df5c917da6fa3",
+        "type": "debug",
+        "z": "d49126dd4c1d3065",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "930f25c35651779b",
+        "type": "debug",
+        "z": "d49126dd4c1d3065",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fd9ab019b8861101",
+        "type": "debug",
+        "z": "d49126dd4c1d3065",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c2955021f885c7f4",
+        "type": "inject",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "requestTimeout",
+                "v": "300000",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "30",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "da1e72f614d7141f"
+            ]
+        ]
+    },
+    {
+        "id": "1cd432d211b8a352",
+        "type": "change",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "payload[0].id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].body",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "query",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 80,
+        "wires": [
+            [
+                "3e137b220d5b6547"
+            ]
+        ]
+    },
+    {
+        "id": "3e137b220d5b6547",
+        "type": "json",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 910,
+        "y": 200,
+        "wires": [
+            [
+                "411c3264f6abf85b"
+            ]
+        ]
+    },
+    {
+        "id": "89417af031031962",
+        "type": "http request",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr1/edge/quality",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 350,
+        "y": 340,
+        "wires": [
+            [
+                "e397157786495a86"
+            ]
+        ]
+    },
+    {
+        "id": "411c3264f6abf85b",
+        "type": "function",
+        "z": "f5a328b5fd089801",
+        "name": "Initalize flow ",
+        "func": "flow.set(\"payload\", \"[\" + msg.payload + \"]\")\nflow.set(\"delay\", env.get(\"initialdelay\")) //delay betwien retries start at 2 seconds\nflow.set(\"timeout\", env.get(\"initialtimeout\"))\n//flow.set(\"retry\", 0)\nflow.set(\"iteration\", 1);\nvar newmsg = {payload: \"[\"+msg.payload+\"]\"}\nnewmsg.requestTimeout = 60000; //timeout of 60 seconds (in miliseconds)\n//newmsg.retry = flow.get(\"retry\"); \nnewmsg.iteration = flow.get(\"iteration\");//set initial vale on iteration\nnewmsg.msg_id = flow.get(\"msg_id\");\n//newmsg.delay = flow.get(\"delay\")\n//flow.set(\"delay\", 100)\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 200,
+        "wires": [
+            [
+                "89417af031031962",
+                "3901ce2cb5b6e8e9"
+            ]
+        ],
+        "info": "env.get(\"initialdelay\") set in the nodered settings\r\n"
+    },
+    {
+        "id": "e397157786495a86",
+        "type": "switch",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 340,
+        "wires": [
+            [
+                "ba12e7cee88b4f19",
+                "00202c96e6d52957"
+            ],
+            [
+                "22d0210a7f07e39c",
+                "9f122e892a8859f1"
+            ]
+        ]
+    },
+    {
+        "id": "ba12e7cee88b4f19",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "infinity Success",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "22d0210a7f07e39c",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "Failure iteration",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6486d5797d662030",
+        "type": "function",
+        "z": "f5a328b5fd089801",
+        "name": "Retry",
+        "func": "//flow.iteration = 1 + 1\n//flow.set(\"retry\", flow.get(\"retry\") + 1)\nflow.set(\"iteration\", flow.get(\"iteration\") + 1)\nflow.set(\"delay\", flow.get(\"delay\")*2);\nflow.set(\"timeout\", flow.get(\"timeout\") * 2);\nvar newmsg = { payload: flow.get(\"payload\"), \nrequestTimeout: flow.get(\"timeout\"), \n//retry: flow.get(\"retry\"),\niteration: flow.get(\"iteration\"),\ndelay: flow.get(\"delay\") }\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 520,
+        "wires": [
+            [
+                "7004adff9a4ae3c4",
+                "3901ce2cb5b6e8e9"
+            ]
+        ]
+    },
+    {
+        "id": "9f122e892a8859f1",
+        "type": "switch",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "property": "iteration",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "gte",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 580,
+        "wires": [
+            [
+                "6486d5797d662030"
+            ],
+            [
+                "e9cff84c57a8b672"
+            ]
+        ]
+    },
+    {
+        "id": "cd4ca8959ce2783b",
+        "type": "comment",
+        "z": "f5a328b5fd089801",
+        "name": "test",
+        "info": "store data in the global env",
+        "x": 210,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e9cff84c57a8b672",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "Failure process",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7004adff9a4ae3c4",
+        "type": "delay",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "pauseType": "delayv",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "89417af031031962"
+            ]
+        ]
+    },
+    {
+        "id": "3901ce2cb5b6e8e9",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "sent",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1350,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "4a8b389403869d7c",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "SQL OUTPUT",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3b5ebb0f6f097b6f",
+        "type": "switch",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "5c4d45765575b407",
+                "13e2d13a4fc136ad"
+            ],
+            [
+                "1cd432d211b8a352"
+            ]
+        ]
+    },
+    {
+        "id": "5c4d45765575b407",
+        "type": "debug",
+        "z": "f5a328b5fd089801",
+        "name": "ISNULL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "13e2d13a4fc136ad",
+        "type": "delay",
+        "z": "f5a328b5fd089801",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 60,
+        "wires": [
+            [
+                "da1e72f614d7141f"
+            ]
+        ]
+    },
+    {
+        "id": "4f499806370cbce6",
+        "type": "MSSQL",
+        "z": "f5a328b5fd089801",
+        "mssqlCN": "b92f27f6a441682e",
+        "name": "select top 1 incremental",
+        "outField": "payload",
+        "returnType": "0",
+        "throwErrors": "0",
+        "query": "select top 1 body, id from  [output].[get_infinity_braincube_messages_incremental]()",
+        "modeOpt": "",
+        "modeOptType": "query",
+        "queryOpt": "",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "msg",
+        "rows": "",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "3b5ebb0f6f097b6f"
+            ]
+        ]
+    },
+    {
+        "id": "00202c96e6d52957",
+        "type": "MSSQL",
+        "z": "f5a328b5fd089801",
+        "mssqlCN": "b92f27f6a441682e",
+        "name": "insert success",
+        "outField": "payload",
+        "query": "declare @msg_id as int\nset @msg_id = {{{msg_id}}}\n\ninsert into [potf-sa-sqldb-processing].[log].[sent_messages] (source_id,target_id,msg_id,plant_id, sent_dt)\nselect 2 source_id, 2 target_id, @msg_id id,14 plant_id, CURRENT_TIMESTAMP\n",
+        "x": 1120,
+        "y": 340,
+        "wires": [
+            [
+                "4a8b389403869d7c",
+                "4f499806370cbce6"
+            ]
+        ]
+    },
+    {
+        "id": "da1e72f614d7141f",
+        "type": "MSSQL",
+        "z": "f5a328b5fd089801",
+        "mssqlCN": "b92f27f6a441682e",
+        "name": "execute creation of new messages",
+        "outField": "payload",
+        "returnType": "0",
+        "throwErrors": "0",
+        "query": "EXEC\t [stg].[generate_messages_infinity_braincube]",
+        "modeOpt": "",
+        "modeOptType": "query",
+        "queryOpt": "",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "msg",
+        "rows": "",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "4f499806370cbce6"
+            ]
+        ]
+    },
+    {
+        "id": "4d86d4ed3a694f94",
+        "type": "catch",
+        "z": "f5a328b5fd089801",
+        "name": "catch infinity",
+        "scope": [
+            "4f499806370cbce6",
+            "00202c96e6d52957",
+            "da1e72f614d7141f"
+        ],
+        "uncaught": false,
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "13e2d13a4fc136ad"
+            ]
+        ]
+    },
+    {
+        "id": "61a2530965a9c18e",
+        "type": "inject",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "3d0944df2bd4e694"
+            ]
+        ]
+    },
+    {
+        "id": "510c1bb0759160fa",
+        "type": "change",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "tag_type",
+                "pt": "flow",
+                "to": "payload[0].tag_type",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "payload[0].id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].body",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "query",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 100,
+        "wires": [
+            [
+                "7c08c09aab58dea4"
+            ]
+        ]
+    },
+    {
+        "id": "7c08c09aab58dea4",
+        "type": "json",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 910,
+        "y": 220,
+        "wires": [
+            [
+                "3f39c2d306a34ce9"
+            ]
+        ]
+    },
+    {
+        "id": "af5c95a600b01e3b",
+        "type": "http request",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr1/edge/analog",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "48766bc3d536fe3d"
+            ]
+        ]
+    },
+    {
+        "id": "3f39c2d306a34ce9",
+        "type": "function",
+        "z": "b271e17494363ebb",
+        "name": "Initalize flow ",
+        "func": "flow.set(\"payload\", \"[\" + msg.payload + \"]\")\nflow.set(\"delay\", env.get(\"initialdelay\")) //delay betwien retries start at 2 seconds\nflow.set(\"timeout\", env.get(\"initialtimeout\"))\n//flow.set(\"retry\", 0)\nflow.set(\"iteration\", 1);\nvar newmsg = {payload: \"[\"+msg.payload+\"]\"}\nnewmsg.requestTimeout = 60000; //timeout of 60 seconds (in miliseconds)\n//newmsg.retry = flow.get(\"retry\"); \nnewmsg.iteration = flow.get(\"iteration\");//set initial vale on iteration\nnewmsg.msg_id = flow.get(\"msg_id\");\nnewmsg.tag_type = flow.get(\"tag_type\");\n//newmsg.delay = flow.get(\"delay\")\n//flow.set(\"delay\", 100)\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 220,
+        "wires": [
+            [
+                "8b5761f23ae8cb93",
+                "64e0e3531c292130"
+            ]
+        ],
+        "info": "env.get(\"initialdelay\") set in the nodered settings\r\n"
+    },
+    {
+        "id": "48766bc3d536fe3d",
+        "type": "switch",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "5a78ced1e93ab86e",
+                "0a9b6e9e29376933"
+            ],
+            [
+                "2c607fbb24c91c6c",
+                "e949c356a33b3ccd"
+            ]
+        ]
+    },
+    {
+        "id": "5a78ced1e93ab86e",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "analog Success",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2c607fbb24c91c6c",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "Failure iteration",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "63b15a6a5dad47fc",
+        "type": "function",
+        "z": "b271e17494363ebb",
+        "name": "Retry",
+        "func": "//flow.iteration = 1 + 1\n//flow.set(\"retry\", flow.get(\"retry\") + 1)\nflow.set(\"iteration\", flow.get(\"iteration\") + 1)\nflow.set(\"delay\", flow.get(\"delay\")*2);\nflow.set(\"timeout\", flow.get(\"timeout\") * 2);\nvar newmsg = { payload: flow.get(\"payload\"), \nrequestTimeout: flow.get(\"timeout\"), \n//retry: flow.get(\"retry\"),\niteration: flow.get(\"iteration\"),\ndelay: flow.get(\"delay\"),\ntag_type: flow.get(\"tag_type\") }\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 540,
+        "wires": [
+            [
+                "65e5d2ac6aa08096",
+                "8b5761f23ae8cb93"
+            ]
+        ]
+    },
+    {
+        "id": "e949c356a33b3ccd",
+        "type": "switch",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "property": "iteration",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "gte",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 600,
+        "wires": [
+            [
+                "63b15a6a5dad47fc"
+            ],
+            [
+                "23801c6790541dd1"
+            ]
+        ]
+    },
+    {
+        "id": "eac85f360c8b90b2",
+        "type": "comment",
+        "z": "b271e17494363ebb",
+        "name": "test",
+        "info": "store data in the global env",
+        "x": 210,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "23801c6790541dd1",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "Failure process",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "65e5d2ac6aa08096",
+        "type": "delay",
+        "z": "b271e17494363ebb",
+        "name": "Delay after failure",
+        "pauseType": "delayv",
+        "timeout": "0",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 230,
+        "y": 480,
+        "wires": [
+            [
+                "64e0e3531c292130"
+            ]
+        ]
+    },
+    {
+        "id": "8b5761f23ae8cb93",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "sent",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1350,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "6db44c9c377bb5bf",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "SQL OUTPUT",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f2bc7a76c35c7485",
+        "type": "switch",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "4d4507cf0b60bc61",
+                "0ae2c89aaf793a74"
+            ],
+            [
+                "510c1bb0759160fa"
+            ]
+        ]
+    },
+    {
+        "id": "4d4507cf0b60bc61",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "ISNULL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "0ae2c89aaf793a74",
+        "type": "delay",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 100,
+        "wires": [
+            [
+                "3d0944df2bd4e694"
+            ]
+        ]
+    },
+    {
+        "id": "0a9b6e9e29376933",
+        "type": "MSSQL",
+        "z": "b271e17494363ebb",
+        "mssqlCN": "dabc600bfac46293",
+        "name": "insert success",
+        "outField": "payload",
+        "query": "declare @msg_id as int\nset @msg_id = {{{msg_id}}}\n\ninsert into [potf-br-jcr-temp-staging-area].dbo.ignition_sent\nselect @msg_id",
+        "x": 1120,
+        "y": 360,
+        "wires": [
+            [
+                "6db44c9c377bb5bf",
+                "3d0944df2bd4e694"
+            ]
+        ]
+    },
+    {
+        "id": "7634c577b135707c",
+        "type": "catch",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "scope": [
+            "7eb5fb3a3d8f4a0f",
+            "0a9b6e9e29376933"
+        ],
+        "uncaught": false,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "0ae2c89aaf793a74"
+            ]
+        ]
+    },
+    {
+        "id": "c31d57183cf88af0",
+        "type": "http request",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr1/edge/counter",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "48766bc3d536fe3d"
+            ]
+        ]
+    },
+    {
+        "id": "fbc8673c601fb4e9",
+        "type": "http request",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr1/edge/event",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [
+                "48766bc3d536fe3d",
+                "a71b80e4f6ab5eac"
+            ]
+        ]
+    },
+    {
+        "id": "64e0e3531c292130",
+        "type": "switch",
+        "z": "b271e17494363ebb",
+        "name": "",
+        "property": "tag_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "analog",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "counter",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "event",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "af5c95a600b01e3b"
+            ],
+            [
+                "c31d57183cf88af0"
+            ],
+            [
+                "fbc8673c601fb4e9"
+            ]
+        ]
+    },
+    {
+        "id": "a71b80e4f6ab5eac",
+        "type": "debug",
+        "z": "b271e17494363ebb",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3d0944df2bd4e694",
+        "type": "MSSQL",
+        "z": "b271e17494363ebb",
+        "mssqlCN": "dabc600bfac46293",
+        "name": "select2",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "select top 1 body, id, tag_type from  [potf-br-jcr-temp-staging-area].dbo.ignition_output\r\nwhere  id not in (select id from [potf-br-jcr-temp-staging-area].dbo.ignition_sent)\r\norder by id asc",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "4d4507cf0b60bc61",
+                "f2bc7a76c35c7485"
+            ]
+        ]
+    },
+    {
+        "id": "2c72dea185fd98c2",
+        "type": "inject",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "7e05bc87b6e72a13"
+            ]
+        ]
+    },
+    {
+        "id": "3e7656e175733462",
+        "type": "change",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "payload[0].id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "tag_type",
+                "pt": "flow",
+                "to": "payload[0].tag_type",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].body",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "query",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 100,
+        "wires": [
+            [
+                "13e2014c6e7d71a5"
+            ]
+        ]
+    },
+    {
+        "id": "13e2014c6e7d71a5",
+        "type": "json",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 970,
+        "y": 200,
+        "wires": [
+            [
+                "a3c4dd72925a9903"
+            ]
+        ]
+    },
+    {
+        "id": "a3c4dd72925a9903",
+        "type": "function",
+        "z": "d04963dd178ec09f",
+        "name": "Initalize flow ",
+        "func": "flow.set(\"payload\", \"[\" + msg.payload + \"]\")\nflow.set(\"delay\", env.get(\"initialdelay\")) //delay betwien retries start at 2 seconds\nflow.set(\"timeout\", env.get(\"initialtimeout\"))\n//flow.set(\"retry\", 0)\nflow.set(\"iteration\", 1);\nvar newmsg = {payload: \"[\"+msg.payload+\"]\"}\nnewmsg.requestTimeout = 60000; //timeout of 60 seconds (in miliseconds)\n//newmsg.retry = flow.get(\"retry\"); \nnewmsg.iteration = flow.get(\"iteration\");//set initial vale on iteration\nnewmsg.msg_id = flow.get(\"msg_id\");\nnewmsg.tag_type = flow.get(\"tag_type\");\n//newmsg.delay = flow.get(\"delay\")\n//flow.set(\"delay\", 100)\nreturn newmsg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1190,
+        "y": 200,
+        "wires": [
+            [
+                "909616ba216ed0c4",
+                "7aa74bb96e0b701c"
+            ]
+        ],
+        "info": "env.get(\"initialdelay\") set in the nodered settings\r\n"
+    },
+    {
+        "id": "1d96022443c426f7",
+        "type": "switch",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "b9f3df868cff3dcb"
+            ],
+            [
+                "3e7656e175733462",
+                "5d55d74b1b962855"
+            ]
+        ]
+    },
+    {
+        "id": "b9f3df868cff3dcb",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "ISNULL",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7e05bc87b6e72a13",
+        "type": "change",
+        "z": "d04963dd178ec09f",
+        "name": "initialize history load",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "77505e6037038489"
+            ]
+        ]
+    },
+    {
+        "id": "26ed03ec98c60458",
+        "type": "change",
+        "z": "d04963dd178ec09f",
+        "name": "increment id",
+        "rules": [
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "msg_id",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "msg",
+                "to": "msg_id+1",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "msg_id",
+                "pt": "flow",
+                "to": "msg_id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "1716251a7d244eaa"
+            ]
+        ]
+    },
+    {
+        "id": "1716251a7d244eaa",
+        "type": "switch",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "msg_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "650",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "77505e6037038489"
+            ]
+        ]
+    },
+    {
+        "id": "86141c78b1a279dd",
+        "type": "http request",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr2/edge/analog",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "db33f549051a3362"
+            ]
+        ]
+    },
+    {
+        "id": "db33f549051a3362",
+        "type": "switch",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "200",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 820,
+        "wires": [
+            [
+                "19001a6b1ad9467f"
+            ],
+            [
+                "204dde8ec9a5a683",
+                "2cc824de69045cf9"
+            ]
+        ]
+    },
+    {
+        "id": "0503e5e33346942d",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "analog Success",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "204dde8ec9a5a683",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "Failure iteration",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "83a94c982ebc0d84",
+        "type": "function",
+        "z": "d04963dd178ec09f",
+        "name": "Retry",
+        "func": "//flow.iteration = 1 + 1\n//flow.set(\"retry\", flow.get(\"retry\") + 1)\nflow.set(\"iteration\", flow.get(\"iteration\") + 1)\nflow.set(\"delay\", flow.get(\"delay\")*4);\nflow.set(\"timeout\", flow.get(\"timeout\") * 2);\nvar newmsg = { payload: flow.get(\"payload\"), \nrequestTimeout: flow.get(\"timeout\"), \n//retry: flow.get(\"retry\"),\niteration: flow.get(\"iteration\"),\ndelay: flow.get(\"delay\"),\ntag_type: flow.get(\"tag_type\"),\nmsg_id: flow.get(\"msg_id\") }\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1000,
+        "wires": [
+            [
+                "b66b85a7a15b6bfd",
+                "d1ff771b2927767c"
+            ]
+        ]
+    },
+    {
+        "id": "2cc824de69045cf9",
+        "type": "switch",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "iteration",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "gte",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 1060,
+        "wires": [
+            [
+                "83a94c982ebc0d84"
+            ],
+            [
+                "3698ba7ed0c4459e"
+            ]
+        ]
+    },
+    {
+        "id": "3698ba7ed0c4459e",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "Failure process",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "d1ff771b2927767c",
+        "type": "delay",
+        "z": "d04963dd178ec09f",
+        "name": "Delay after failure",
+        "pauseType": "delayv",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 940,
+        "wires": [
+            [
+                "909616ba216ed0c4"
+            ]
+        ]
+    },
+    {
+        "id": "b66b85a7a15b6bfd",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "sent",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1510,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "8f9f4bbf87c5301d",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "SQL OUTPUT",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1540,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b231a85f6b28c383",
+        "type": "http request",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr2/edge/counter",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 670,
+        "y": 840,
+        "wires": [
+            [
+                "db33f549051a3362"
+            ]
+        ]
+    },
+    {
+        "id": "9c4350638403c2a5",
+        "type": "http request",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://ardaghbrjcr.mybraincube.com/iot/iotardaghbrjcr2/edge/event",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "x-api-key",
+                "valueType": "other",
+                "valueValue": ".`%Zl2dW'OWv+mrCfizH"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "delay",
+                "valueType": "msg",
+                "valueValue": "delay"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "iteration",
+                "valueType": "msg",
+                "valueValue": "iteration"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 670,
+        "y": 880,
+        "wires": [
+            [
+                "db33f549051a3362"
+            ]
+        ]
+    },
+    {
+        "id": "909616ba216ed0c4",
+        "type": "switch",
+        "z": "d04963dd178ec09f",
+        "name": "",
+        "property": "tag_type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "analog",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "counter",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "event",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 310,
+        "y": 820,
+        "wires": [
+            [
+                "86141c78b1a279dd"
+            ],
+            [
+                "b231a85f6b28c383"
+            ],
+            [
+                "9c4350638403c2a5"
+            ]
+        ]
+    },
+    {
+        "id": "7aa74bb96e0b701c",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5d55d74b1b962855",
+        "type": "debug",
+        "z": "d04963dd178ec09f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "19001a6b1ad9467f",
+        "type": "MSSQL",
+        "z": "d04963dd178ec09f",
+        "mssqlCN": "b92f27f6a441682e",
+        "name": "",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "declare @msg_id as int\r\nset @msg_id = {{{msg_id}}}\r\n\r\ninsert into [potf-br-jcr-temp-staging-area].dbo.load_progress (id)\r\nselect @msg_id",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 1180,
+        "y": 800,
+        "wires": [
+            [
+                "0503e5e33346942d",
+                "77505e6037038489"
+            ]
+        ]
+    },
+    {
+        "id": "77505e6037038489",
+        "type": "MSSQL",
+        "z": "d04963dd178ec09f",
+        "mssqlCN": "dabc600bfac46293",
+        "name": "load hist",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "select top 1 tag_type, body, id from \r\n[potf-br-jcr-temp-staging-area].[dbo].ignition_output2\r\nwhere id not in (select id from [potf-br-jcr-temp-staging-area].dbo.load_progress)\r\nand id>={{{msg_id}}}\r\norder by id asc\r\n",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "1d96022443c426f7"
+            ]
+        ]
+    },
+    {
+        "id": "c526763252cce11a",
+        "type": "inject",
+        "z": "4db8638ec83b30a6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "30af04fad0d29451"
+            ]
+        ]
+    },
+    {
+        "id": "db6b2026231adcbf",
+        "type": "debug",
+        "z": "4db8638ec83b30a6",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "30af04fad0d29451",
+        "type": "function",
+        "z": "4db8638ec83b30a6",
+        "name": "function 2",
+        "func": "// myscript.js\n\n\noracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;\n\nconst mypw =  \"Saveiro01\" // set mypw to the hr schema password\n\nasync function run() {\n\n\n    const connection = await oracledb.getConnection({\n        user: \"operation\",\n        password: mypw,  // mypw contains the hr schema password\n        connectString: \"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.33.234.17)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SID=MIP)))\"\n    });\n\n    const result = await connection.execute(\n        `SELECT\n            id,\n            plant,\n            line,\n            machine,\n            can_size,\n            datetime\n        FROM\n            fdb.pof_can_size\n            WHERE ROWNUM <= 10;`,\n        [103],  // bind value for :id\n    );\n\n    console.log(result.rows);\n    await connection.close();\n    ;\n}\n\nrun()\nreturn('1')",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "oracledb",
+                "module": "oracledb"
+            }
+        ],
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "db6b2026231adcbf"
+            ]
+        ]
     }
 ]
