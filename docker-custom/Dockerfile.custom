@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-ARG NODE_VERSION=16
+ARG NODE_VERSION=18
 ARG OS=alpine
 
 #### Stage BASE ########################################################################################################
@@ -18,6 +18,8 @@ RUN set -ex && \
         nano \
         git \
         openssl \
+        libaio libnsl libc6-compat \
+        unzip \
         openssh-client \
         ca-certificates && \
     mkdir -p /usr/src/node-red /data && \
@@ -27,7 +29,18 @@ RUN set -ex && \
     chown -R node-red:root /usr/src/node-red && chmod -R g+rwX /usr/src/node-red
     # chown -R node-red:node-red /data && \
     # chown -R node-red:node-red /usr/src/node-red
-
+RUN cd /tmp
+RUN curl -o instantclient-basiclite.zip https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip -SL&& \
+    unzip instantclient-basiclite.zip && \
+    mv instantclient*/ /usr/lib/instantclient && \
+    rm instantclient-basiclite.zip && \
+    ln -s /usr/lib/instantclient/libclntsh.so.21.1 /usr/lib/libclntsh.so && \
+    ln -s /usr/lib/instantclient/libocci.so.21.1 /usr/lib/libocci.so && \
+    ln -s /usr/lib/instantclient/libociicus.so /usr/lib/libociicus.so && \
+    ln -s /usr/lib/instantclient/libnnz21.so /usr/lib/libnnz21.so && \
+    ln -s /usr/lib/libnsl.so.2 /usr/lib/libnsl.so.1 && \
+    ln -s /lib/libc.so.6 /usr/lib/libresolv.so.2 && \
+    ln -s /lib64/ld-linux-x86-64.so.2 /usr/lib/ld-linux-x86-64.so.2	
 # Set work directory
 WORKDIR /usr/src/node-red
 
@@ -82,12 +95,17 @@ RUN chown -R node-red:root /usr/src/node-red && \
 RUN npm config set cache /data/.npm --global 
 
 USER node-red
+#Install packages
+
+RUN npm install --only=production node-red-contrib-easy-oracle node-red-contrib-mssql-plus
 
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
     PATH=/usr/src/node-red/node_modules/.bin:${PATH} \
-    FLOWS=flows.json
+    FLOWS=flows.json \
+    LD_LIBRARY_PATH=/usr/lib/instantclient \
+    TNS_ADMIN=/data
 
 # ENV NODE_RED_ENABLE_SAFE_MODE=true    # Uncomment to enable safe start mode (flows not running)
 # ENV NODE_RED_ENABLE_PROJECTS=true     # Uncomment to enable projects option
